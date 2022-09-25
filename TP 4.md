@@ -37,10 +37,39 @@ Pour savoir quels paquets permet de jouer au sudoku, il convient d'exécuter la 
 
 ## Exercice 2
 
+Pour trouver le paquet installant la commande ls, il faut utiliser la commande ```dpkg -S ls```. Pour obtenir cette information en une seule commande ```dpkg -S $(which ls)```.
+
+```bash
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <command>"
+    exit 1
+fi
+
+dpkg -S $(which $1)
+```
+
+## Exercice 3. 
+
+```bash
+dpkg -s $1 | grep Status | cut -d " " -f 4
+```
+
+## Exercice 4.
+
+Pour lister les programmes livrés avec coreutils, il faut exécuter la commande ````apt-cache show coreutils | grep -E "Package:|Description:"````. Le programme ````.```` sert à vérifier si un fichier existe.
+
+## Exercice 5.
+
+Installer emacs et lynx : ```aptitude install emacs lynx```.
 
 
 
+## Exercice 6.
 
+Pour installer la version Oracle de Java, il faut utiliser la commande ```sudo add-apt-repository ppa:webupd8team/java``` puis ```sudo apt-get update``` et enfin  ```sudo apt-get install oracle-java8-installer```.
 
+Pour vérifier qu'un nouveau fichier a été créé, on utilise  ```ls /etc/apt/sources.list.d```. Ce fichier contient les nouveaux dépôts de paquets.
 
 
